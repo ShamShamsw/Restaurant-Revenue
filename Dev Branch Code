@@ -1,1 +1,43 @@
 
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+
+# Define the variables
+# Number_of_Customers: Number of customers served in a month
+# Menu_Price: Average price of items on the menu
+# Marketing_Spend: Amount spent on marketing in a month
+# Average_Customer_Spending: Average spending per customer
+# Promotions: Number of promotional activities carried out
+# Reviews: Number of reviews received
+# Monthly_Revenue: Total revenue generated in a month
+
+# Create a dictionary with the given variables
+data = {
+    'Number_of_Customers': [/* Add your data here */],
+    'Menu_Price': [/* Add your data here */],
+    'Marketing_Spend': [/* Add your data here */],
+    'Average_Customer_Spending': [/* Add your data here */],
+    'Promotions': [/* Add your data here */],
+    'Reviews': [/* Add your data here */],
+    'Monthly_Revenue': [/* Add your data here */]
+}
+
+# Convert the dictionary into a pandas DataFrame
+df = pd.DataFrame(data)
+
+# Define the independent variables (features)
+X = df[['Number_of_Customers', 'Menu_Price', 'Marketing_Spend', 'Average_Customer_Spending', 'Promotions', 'Reviews']]
+
+# Add a constant to the independent variables (for the intercept term)
+X = sm.add_constant(X)
+
+# Define the dependent variable
+y = df['Monthly_Revenue']
+
+# Fit the multiple regression model
+model = sm.OLS(y, X).fit()
+
+# Print the regression statistics
+print(model.summary())
